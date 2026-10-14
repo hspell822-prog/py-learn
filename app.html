@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PyLearn — Learn Python in Urdu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+<link rel="icon" type="image/png" href="assets/images/favicon.png?v=2" />
+</head>
+
+<body class="lang-ur">
+
+<!-- ═══ HEADER ═══ -->
+<header class="header">
+  <div class="header-inner">
+    <a class="brand" href="index.html" title="Landing Page">
+      <div class="brand-logo"><span class="emoji-fallback">🐍</span></div>
+      <div class="brand-text">
+        <strong>PyLearn</strong>
+        <small>Python 3.12</small>
+      </div>
+    </a>
+
+    <a class="nav-back-btn" href="index.html" title="Back to Landing">
+      <span>←</span>
+      <span data-lang="ur">Landing</span>
+      <span data-lang="en">Landing</span>
+    </a>
+
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="ur">UR</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+
+    <button class="home-btn" id="homeBtn" title="Modules Home">
+      🏠
+      <span class="btn-text" data-lang="ur">Home</span>
+      <span class="btn-text" data-lang="en">Home</span>
+    </button>
+
+    <div class="progress" id="headerProgress" title="Progress">
+      <div class="progress-dots" id="headerDots"></div>
+      <div class="progress-text" id="headerProgressText">0/12</div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ MAIN ═══ -->
+<main class="main">
+
+  <!-- HOME VIEW -->
+  <section id="view-home" class="view active">
+    <div class="hero-home">
+      <div class="module-tag">🐍 PYLEARN · PYTHON 3.12</div>
+      <h1>
+        <span data-lang="ur">Python seekho — Urdu mein, aasan tareeqe se</span>
+        <span data-lang="en">Learn Python — in Urdu, the easy way</span>
+      </h1>
+      <p class="hero-sub">
+        <span data-lang="ur">12 modules, 56 topics — code likho, chalao, seekho. Koi install nahi.</span>
+        <span data-lang="en">12 modules, 56 topics — write, run, learn. No install needed.</span>
+      </p>
+      <div class="meta-badges">
+        <span class="badge">📚 <span data-lang="ur">12 Modules</span><span data-lang="en">12 Modules</span></span>
+        <span class="badge">🎯 <span data-lang="ur">56 Topics</span><span data-lang="en">56 Topics</span></span>
+        <span class="badge">🧠 <span data-lang="ur">280+ Quiz</span><span data-lang="en">280+ Quizzes</span></span>
+        <span class="badge">⚡ <span data-lang="ur">Browser mein Python</span><span data-lang="en">Python in browser</span></span>
+      </div>
+    </div>
+
+    <div class="modules-grid" id="modulesGrid"></div>
+  </section>
+
+  <!-- MODULE VIEW -->
+  <section id="view-module" class="view">
+    <div class="back-row">
+      <button class="back-btn" id="backHomeBtn">
+        ← <span data-lang="ur">Modules</span><span data-lang="en">Modules</span>
+      </button>
+      <a class="back-btn landing-link" href="index.html">
+        🏠 <span data-lang="ur">Landing Page</span><span data-lang="en">Landing Page</span>
+      </a>
+    </div>
+
+    <div class="hero">
+      <div class="module-tag" id="moduleTag"></div>
+      <h1 id="moduleTitle"></h1>
+      <p class="hero-sub" id="moduleDesc"></p>
+      <div class="meta-badges" id="moduleBadges"></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="learn">
+        <span class="emoji">📖</span>
+        <span class="label-text"><span data-lang="ur">Seekho</span><span data-lang="en">Learn</span></span>
+      </button>
+      <button class="tab" data-tab="theory">
+        <span class="emoji">📚</span>
+        <span class="label-text"><span data-lang="ur">Theory</span><span data-lang="en">Theory</span></span>
+      </button>
+      <button class="tab" data-tab="practice">
+        <span class="emoji">🎯</span>
+        <span class="label-text"><span data-lang="ur">Practice</span><span data-lang="en">Practice</span></span>
+      </button>
+      <button class="tab" data-tab="quiz">
+        <span class="emoji">🧠</span>
+        <span class="label-text"><span data-lang="ur">Quiz</span><span data-lang="en">Quiz</span></span>
+      </button>
+      <button class="tab" data-tab="video">
+        <span class="emoji">🎬</span>
+        <span class="label-text"><span data-lang="ur">Video</span><span data-lang="en">Video</span></span>
+      </button>
+    </div>
+
+    <!-- LEARN TAB -->
+    <div class="tab-content active" id="tab-learn">
+      <div class="learn-grid">
+        <div>
+          <div class="topic-panel">
+            <div class="topic-body" id="topicBody"></div>
+            <div class="topic-footer">
+              <button id="prevTopicBtn" class="btn-secondary" disabled>← Previous</button>
+              <button id="nextTopicBtn" class="btn-primary">Next →</button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="editor-panel">
+            <div class="panel-header">main.py · PYTHON</div>
+            <textarea id="codeInput" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
+            <div class="editor-actions">
+              <button id="runBtn" disabled class="btn-run">▶ Loading…</button>
+              <button id="resetBtn" class="btn-reset">↺ Reset</button>
+            </div>
+          </div>
+          <div class="terminal-panel">
+            <div class="panel-header">
+              <span>Terminal · output</span>
+              <span id="termStatus" class="terminal-status">Loading…</span>
+            </div>
+            <div id="terminalBody" class="terminal-body">
+              <span class="terminal-muted">&gt;&gt;&gt; Loading…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THEORY TAB -->
+    <div class="tab-content" id="tab-theory">
+      <div class="theory-nav" id="theoryNav"></div>
+      <div class="theory-content" id="theoryContent"></div>
+    </div>
+
+    <!-- PRACTICE TAB -->
+    <div class="tab-content" id="tab-practice">
+      <div class="practice-panel">
+        <h2>🎯 <span data-lang="ur">Practice Challenge</span><span data-lang="en">Practice Challenge</span></h2>
+        <div id="practiceContent"></div>
+      </div>
+    </div>
+
+    <!-- QUIZ TAB -->
+<div class="tab-content" id="tab-quiz">
+  <div class="quiz-panel">
+    
+    <!-- Instructions Box -->
+    <div class="quiz-instructions">
+      <div class="instr-header">
+        <span class="instr-icon">📋</span>
+        <strong data-lang="ur">Module Unlock Kaise Hoga?</strong>
+        <strong data-lang="en">How to Unlock Next Module?</strong>
+      </div>
+      <ul class="instr-list">
+        <li>
+          <span data-lang="ur">✅ Saare topics ke saare quizzes <strong>sahi</strong> karo</span>
+          <span data-lang="en">✅ Complete <strong>all quizzes correctly</strong> in every topic</span>
+        </li>
+        <li>
+          <span data-lang="ur">❌ Galat answer ho gaya? <strong>"Galat Reset"</strong> button dabao</span>
+          <span data-lang="en">❌ Got one wrong? Click <strong>"Reset Wrong"</strong> button</span>
+        </li>
+        <li>
+          <span data-lang="ur">🎯 Progress 100% hone pe module <strong>automatically complete</strong> ho jayega</span>
+          <span data-lang="en">🎯 At 100%, module <strong>auto-completes</strong></span>
+        </li>
+        <li>
+          <span data-lang="ur">🔓 Agla module turant <strong>unlock</strong> ho jayega</span>
+          <span data-lang="en">🔓 Next module unlocks <strong>instantly</strong></span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Header -->
+    <h2>🧠 <span data-lang="ur">Quick Quiz</span><span data-lang="en">Quick Quiz</span></h2>
+    
+    <!-- Action Buttons -->
+    <div class="quiz-actions">
+      <button class="quiz-action-btn reset-wrong" id="resetWrongBtn">
+        🔄 <span data-lang="ur">Galat Reset</span><span data-lang="en">Reset Wrong</span>
+      </button>
+      <button class="quiz-action-btn reset-all" id="resetQuizBtn">
+        ↺ <span data-lang="ur">Poora Reset</span><span data-lang="en">Reset All</span>
+      </button>
+    </div>
+
+    <!-- Quiz -->
+    <div id="quizContainer"></div>
+
+    <!-- Progress Bar -->
+    <div class="module-progress-box" id="moduleProgressBox">
+      <div class="progress-info">
+        <span data-lang="ur">📊 Module Progress:</span>
+        <span data-lang="en">📊 Module Progress:</span>
+        <strong id="moduleProgressText">0 / 0 correct</strong>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="moduleProgressFill"></div>
+      </div>
+      <div class="progress-hint" id="progressHint">
+        <span data-lang="ur">💡 Saare sahi karo — 100% pe module complete ho jayega</span>
+        <span data-lang="en">💡 Answer all correctly — module completes at 100%</span>
+      </div>
+    </div>
+
+    <!-- Manual Complete Button -->
+    <button class="complete-module-btn" id="completeModuleBtn" style="display:none;">
+      ✅ <span data-lang="ur">Module Complete Karo & Agla Unlock</span>
+      <span data-lang="en">Complete Module & Unlock Next</span>
+    </button>
+
+    <!-- Complete Banner -->
+    <div id="moduleCompleteBanner" class="complete-banner" style="display:none;">
+      <div class="complete-icon">🎉</div>
+      <div class="complete-text">
+        <strong data-lang="ur">Shabash! Module complete!</strong>
+        <strong data-lang="en">Well done! Module complete!</strong>
+        <span data-lang="ur">Agla module unlock ho gaya 🚀</span>
+        <span data-lang="en">Next module unlocked 🚀</span>
+      </div>
+      <button id="nextModuleBtn" class="btn-primary">
+        <span data-lang="ur">Agla Module →</span>
+        <span data-lang="en">Next Module →</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+        <!-- Manual Complete Button -->
+        <button class="complete-module-btn" id="completeModuleBtn" style="display:none;">
+          ✅ <span data-lang="ur">Module Complete Karo & Agla Unlock</span>
+          <span data-lang="en">Complete Module & Unlock Next</span>
+        </button>
+
+        <!-- Auto Complete Banner -->
+        <div id="moduleCompleteBanner" class="complete-banner" style="display:none;">
+          <div class="complete-icon">🎉</div>
+          <div class="complete-text">
+            <strong data-lang="ur">Shabash! Module complete!</strong>
+            <strong data-lang="en">Well done! Module complete!</strong>
+            <span data-lang="ur">Agla module unlock ho gaya 🚀</span>
+            <span data-lang="en">Next module unlocked 🚀</span>
+          </div>
+          <button id="nextModuleBtn" class="btn-primary">
+            <span data-lang="ur">Agla Module →</span>
+            <span data-lang="en">Next Module →</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIDEO TAB -->
+    <div class="tab-content" id="tab-video">
+      <div class="video-panel">
+        <h2>🎬 Video Lesson</h2>
+        <div class="video-placeholder">
+          <div class="video-icon">🎥</div>
+          <p data-lang="ur">Video abhi upload nahi hui</p>
+          <p data-lang="en">Video not uploaded yet</p>
+          <small>Coming soon!</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Skulpt -->
+<script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+
+<!-- Data -->
+<script src="data/course.js"></script>
+<script src="data/module-1.js"></script>
+<script src="data/module-2.js"></script>
+<script src="data/module-3.js"></script>
+<script src="data/module-4.js"></script>
+<script src="data/module-5.js"></script>
+<script src="data/module-6.js"></script>
+<script src="data/module-7.js"></script>
+<script src="data/module-8.js"></script>
+<script src="data/module-9.js"></script>
+<script src="data/module-10.js"></script>
+<script src="data/module-11.js"></script>
+<script src="data/module-12.js"></script>
+
+<!-- Core JS -->
+<script src="js/skulpt-init.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
